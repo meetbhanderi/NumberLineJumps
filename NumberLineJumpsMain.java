@@ -1,35 +1,40 @@
 class NumberLineJumps{
-    static String kangaroo(int x1,int v1,int x2,int v2) {
-
-        if(v1 <= v2) {
-            return "NO";
-        } else {
-            int lcm = Math.max(v1, v2);
-            int i = 1;
-            // Always true
-            while(true) {
-                if(lcm % v1 == 0 && lcm % v2 == 0) {
-                    System.out.printf("The LCM of %d and %d is %d.", v1, v2, lcm);
+        //https://www.hackerrank.com/challenges/kangaroo/problem
+         static String kangaroo(int x1, int v1, int x2, int v2)   {
+            if((x2>x1 && v2>v1)||(x1>x2 && v1>v2))
+            {
+                return "NO";
+            }else {
+                if(x1>x2)
+                {
+                    return meetornot(x2, v2, x1, v1);
+                }
+                else
+                {
+                    return meetornot(x1, v1, x2, v2);
+                }
+            }
+        }
+         static String meetornot(int low, int lows, int high, int highs) {
+            while(low != high)
+            {
+                low = low+lows;
+                high = high+highs;
+                if(low>high)
+                {
                     break;
                 }
-                ++lcm;
             }
-            int x, y;
-            do {
-                lcm = lcm * i;
-                x = (lcm - x1) / v1;
-                y = (lcm - x2)/  v2;
-                if(x == y){
-                    return "YES";
-                }
-                i++;
-                System.out.println("....");
-            } while (x > y);
-
-            return "NO";
+            if(low==high)
+            {
+                return "YES";
+            }
+            else
+            {
+                return "NO";
+            }
         }
     }
-}
 
 class NumberLineJumpsMain{
     public static void main(String[] args){
