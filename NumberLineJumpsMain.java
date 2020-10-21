@@ -1,43 +1,79 @@
+import java.util.Scanner;
+
+/**
+ * Problem Description -> https://www.hackerrank.com/challenges/kangaroo/problem
+ *
+ * @since 12-10-2020
+ */
 class NumberLineJumps{
-        //https://www.hackerrank.com/challenges/kangaroo/problem
-         static String kangaroo(int x1, int v1, int x2, int v2)   {
-            if((x2>x1 && v2>v1)||(x1>x2 && v1>v2))
-            {
-                return "NO";
-            }else {
-                if(x1>x2)
-                {
-                    return meetornot(x2, v2, x1, v1);
-                }
-                else
-                {
-                    return meetornot(x1, v1, x2, v2);
-                }
-            }
-        }
-         static String meetornot(int low, int lows, int high, int highs) {
-            while(low != high)
-            {
-                low = low+lows;
-                high = high+highs;
-                if(low>high)
-                {
-                    break;
-                }
-            }
-            if(low==high)
-            {
-                return "YES";
-            }
-            else
-            {
-                return "NO";
-            }
-        }
-    }
+
+	/**
+	 * @param x1 
+	 * @param v1
+	 * @param x2
+	 * @param v2
+	 *
+	 * @return
+	 */
+	static String kangaroo(int x1, int v1, int x2, int v2)   {
+		if((x2>x1 && v2>v1)||(x1>x2 && v1>v2))
+		{
+			return "NO";
+		}else {
+			if(x1>x2)
+			{
+				return meetornot(x2, v2, x1, v1);
+			}
+			else
+			{
+				return meetornot(x1, v1, x2, v2);
+			}
+		}
+	}
+
+	/**
+	 * @param low 
+	 * @param lows
+	 * @param high
+	 * @param highs
+	 *
+	 * @return
+	 */
+	static String meetornot(int low, int lows, int high, int highs) {
+		while(low != high)
+		{
+			low = low+lows;
+			high = high+highs;
+			if(low>high)
+			{
+				break;
+			}
+		}
+		if(low==high)
+		{
+			return "YES";
+		}
+		else
+		{
+			return "NO";
+		}
+	}
+}
 
 class NumberLineJumpsMain{
-    public static void main(String[] args){
-		System.out.println(NumberLineJumps.kangaroo(0,2,5,3));
+	public static void main(String[] args){
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Enter Input In Single Line as x1 v1 x2 v2");
+		String input = sc.nextLine();
+		String[] inputArray = input.split(" ");
+		try {
+			int x1 = Integer.parseInt(inputArray[0]);
+			int v1 = Integer.parseInt(inputArray[1]);
+			int x2 = Integer.parseInt(inputArray[2]);
+			int v2 = Integer.parseInt(inputArray[3]);
+			System.out.println(NumberLineJumps.kangaroo(x1, v1, x2, v2));
+		}catch(Exception e){
+			System.out.println("Exception Occurred While Processing your input.\nException Message : "+e.getMessage());
+		}
 	}
 }
