@@ -22,11 +22,11 @@ class NumberLineJumps{
 		}else {
 			if(x1>x2)
 			{
-				return meetornot(x2, v2, x1, v1);
+				return meetOrNot(x2, v2, x1, v1);
 			}
 			else
 			{
-				return meetornot(x1, v1, x2, v2);
+				return meetOrNot(x1, v1, x2, v2);
 			}
 		}
 	}
@@ -39,25 +39,23 @@ class NumberLineJumps{
 	 *
 	 * @return
 	 */
-	static String meetornot(int low, int lows, int high, int highs) {
-		while(low != high)
-		{
-			low = low+lows;
-			high = high+highs;
-			if(low>high)
-			{
-				break;
-			}
-		}
-		if(low==high)
-		{
-			return "YES";
-		}
-		else
-		{
-			return "NO";
-		}
-	}
+    static String meetOrNot(int low, int lows, int high, int highs) {
+        String met = "NO";
+        while(low != high)
+        {
+            low = low+lows;
+            high = high+highs;
+            if(low>high)
+            {
+                break;
+            }
+        }
+        if(low==high)
+        {
+            met = "YES";
+        }
+        return met;
+    }
 }
 
 class NumberLineJumpsMain{
